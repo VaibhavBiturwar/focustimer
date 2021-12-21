@@ -62,7 +62,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
 
 
   return (
-    <View>
+    <View style={Styles.container}>
       <View style={Styles.countdownContainer}>
         <CountDown
           minutes={minutes}
@@ -101,6 +101,10 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
 };
 
 const Styles = StyleSheet.create({
+  container:{
+    flex:1
+  },
+  
   title: {
     fontSize: Spacing.xl,
     color: 'white',
@@ -114,17 +118,15 @@ const Styles = StyleSheet.create({
   },
 
   countdownContainer: {
+    flex:0.4,
     alignContent: 'center',
     justifyContent: 'center',
-    marginTop: Spacing.xxxl,
-    paddingTop: Spacing.xxxl,
   },
   buttonWrapper: {
-    flex: 1,
+    flex: 0.3,
     flexDirection: 'row',
-    alignContent: 'center',
-    padding: 50,
-    marginHorizontal: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   clearButton:{

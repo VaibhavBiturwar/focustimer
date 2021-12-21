@@ -15,7 +15,7 @@ export default function App() {
   const [focusHistory, setFocusHistory] = useState([]);
 
   const addFocusHistorySubjectWithState = (subject, status) => {
-    setFocusHistory([...focusHistory, { subject, status }]);
+    setFocusHistory([...focusHistory, { key:String(focusHistory.length+1), subject, status }]);
   };
 
   const onClear = () => {
@@ -24,33 +24,42 @@ export default function App() {
 
   const saveFocusHistory = async () => {
     try {
-      await AsyncStorage.setItem('focusHistory', JSON.stringify(focusHistory));
-      console.log('DATA SAVED' + JSON.stringify(focusHistory));
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    saveFocusHistory();
-  }, [focusHistory]);
-
-  const loadFocusHistory = async () => {
-    try {
-      console.log('Load Called');
-      const History = await AsyncStorage.getItem('focusHistory');
-      if (History && JSON.parse(History).length) {
-        setFocusHistory(JSON.parse(History));
-        console.log('Data Loaded');
+      {
+        await AsyncStorage.setItem(
+          'focusHistory',
+          JSON.stringify(focusHistory)
+        );
+        console.log('DATA SAVED' + JSON.stringify(focusHistory));
       }
     } catch (e) {
       console.log(e);
     }
   };
 
+  const loadFocusHistory = async () => {
+    try {
+      console.log('Loading...');
+      const History = await AsyncStorage.getItem('focusHistory');
+      console.log('History Count: ' + JSON.parse(History).length);
+      if(History && JSON.parse(History).length) {
+        setFocusHistory(JSON.parse(History));
+        console.log('Data Loaded' + '  ' + JSON.parse(History));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
   useEffect(() => {
     loadFocusHistory();
+    console.log('Load Called');
   }, []);
+
+  useEffect(() => {
+    saveFocusHistory();
+  }, [focusHistory]);
+
 
   const Statuses = {
     COMPLETE: 1,

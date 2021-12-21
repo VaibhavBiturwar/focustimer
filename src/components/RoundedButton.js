@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {Spacing} from '../utils/sizes';
 
 export const RoundedButton = ({
     style = {},
@@ -22,20 +23,16 @@ const styles = (size) =>StyleSheet.create({
 
     
     titleTextStyle:{
-      color: "white",
-      fontSize: size/3,
-      justifyContent:"center",
-      textAlign:"center"
-      
+       color: '#fff', fontSize: size / 3 
     },
 
     radius: {
-      borderRadius: size/2,
+       borderRadius: size / 2,
       width: size,
       height: size,
-      alignItems: "center",
-      justifyContent:"center",
-      borderColor: "black",
+      alignItems: 'center',
+      justifyContent: "center",
+      borderColor: "#fff",
       borderWidth: 2
     },
 
